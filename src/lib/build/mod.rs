@@ -1,5 +1,5 @@
 mod build;
-mod index;
+mod pages;
 
-pub use index::index;
+pub use pages::pages;
 pub use build::build;
