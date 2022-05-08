@@ -1,6 +1,9 @@
+use crate::lib::domain::{ Component };
+
 pub enum Elements {
   Heading(u8, String),
-  Paragraph(String)
+  Paragraph(String),
+  Component(Component)
 }
 
 impl Elements {
@@ -9,7 +12,11 @@ impl Elements {
       Elements::Heading(level, inner_text) =>
         format!("<h{l}>{i}</h{l}>", l = level, i = inner_text),
       Elements::Paragraph(inner_text) =>
-        format!("<p>{}</p>", inner_text)
+        format!("<p>{}</p>", inner_text),
+      Elements::Component(component) => {
+        let els = &component.elements;
+        els.into_iter().map(|e| e.render()).collect()
+      }
     }
   }
 }

@@ -12,7 +12,7 @@ pub fn pages(pages: Vec<Page>) {
     for page in pages {
         if let Ok(mut contents) = fs::read_to_string(template_index) {
             let page_title = format!("<title>{}</title>", &page.name);
-            let rendered_elements: String = page.elements.into_iter().map(|x| x.render()).collect();
+            let rendered_elements: String = page.elements.into_iter().map(|e| e.render()).collect();
             let page_content = format!("<main>{}</main>", rendered_elements);
 
             contents = contents
