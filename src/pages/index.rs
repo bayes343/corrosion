@@ -3,20 +3,21 @@ use crate::components::{ header };
 
 pub fn index() -> Page {
   Page {
-    path: String::from("index"),
-    name: String::from("Home"),
+    path: format!("index"),
+    name: format!("Home"),
     elements: vec![
       Elements::Component(header(
-        String::from("Home"),
-        String::from("Experimental frontend framework using the rust language.")
+        format!("Home"),
+        format!("Experimental frontend framework using the rust language.")
       )),
       Elements::Custom(
-        String::from("div"),
+        format!("div"),
         Content::InnerHtml(vec![
           Elements::Paragraph(
             Content::InnerHtml(vec![
-              Elements::Text(String::from("This text is ")),
-              Elements::Custom(String::from("b"), Content::InnerText(String::from("bold")))
+              Elements::Text(format!("This text is ")),
+              Elements::Custom(format!("b"), Content::InnerText(format!("bold"))),
+              Elements::Text(format!("."))
             ]))
         ])
       )
