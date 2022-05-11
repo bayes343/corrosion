@@ -1,8 +1,9 @@
-use crate::lib::domain::{ Layout };
+use crate::lib::domain::{ Layout, Elements };
+use crate::components::{ nav };
 
 pub fn default() -> Layout {
   Layout {
-        template: String::from("<!DOCTYPE html>
+        template: Box::new(|| format!("<!DOCTYPE html>
 <html lang=\"en\">
 <head>
     <meta charset=\"UTF-8\">
@@ -11,8 +12,12 @@ pub fn default() -> Layout {
     <title></title>
 </head>
 <body>
+    {nav}
     <main></main>
+    {footer}
 </body>
-</html>")
+</html>",
+        nav = Elements::Component(nav()).render(),
+        footer = format!("<footer>footer goes here</footer>")))
     }
 }
