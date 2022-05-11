@@ -1,11 +1,11 @@
 use crate::lib::domain::{ Component };
 
 pub enum Elements {
+  Text(String),
+  Custom(String, Content, Option<Vec<(String, String)>>),
   Heading(u8, Content),
   Paragraph(Content),
-  Component(Component),
-  Custom(String, Content),
-  Text(String)
+  Component(Component)
 }
 
 pub enum Content {
@@ -16,19 +16,38 @@ pub enum Content {
 impl Elements {
   pub fn render(&self) -> String {
     match self {
-      Elements::Heading(level, content) =>
-        format!("<h{l}>{i}</h{l}>", l = level, i = get_inner_html(content)),
+      Elements::Text(text) => text.to_string(),
+      Elements::Custom(tag, content, attributes) =>
+        raw_html(tag.to_string(), &content, attributes),
+      Elements::Heading(level, content) => {
+        let tag = format!("h{}", level);
+        raw_html(tag, content, &None)
+      },
       Elements::Paragraph(content) =>
-        format!("<p>{}</p>", get_inner_html(content)),
+        raw_html("p".to_string(), content, &None),
       Elements::Component(component) => {
         let els = &component.elements;
         els.into_iter().map(|e| e.render()).collect()
-      },
-      Elements::Custom(tag, content) =>
-        format!("<{t}>{i}</{t}>", t = tag, i = get_inner_html(content)),
-      Elements::Text(text) => text.to_string()
+      }
     }
   }
+}
+
+fn raw_html(tag: String, content: &Content, attributes: &Option<Vec<(String, String)>>) -> String {
+  let mut attributes_string = format!("");
+  if let Some(vec) = attributes {
+    attributes_string = get_attribute_string(vec)
+  }
+
+  format!("<{t}{a}>{i}</{t}>",
+    t = tag,
+    i = get_inner_html(content),
+    a = attributes_string
+  )
+}
+
+fn get_attribute_string(attributes: &Vec<(String, String)>) -> String {
+  attributes.into_iter().map(|a| format!(" {}=\"{}\"", a.0, a.1)).collect()
 }
 
 fn get_inner_html(content: &Content) -> String {

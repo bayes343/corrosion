@@ -16,10 +16,11 @@ pub fn index() -> Page {
           Elements::Paragraph(
             Content::InnerHtml(vec![
               Elements::Text(format!("This text is ")),
-              Elements::Custom(format!("b"), Content::InnerText(format!("bold"))),
+              Elements::Custom(format!("b"), Content::InnerText(format!("bold")), None),
               Elements::Text(format!("."))
             ]))
-        ])
+        ]),
+        None
       )
     ]
   }
