@@ -7,7 +7,11 @@ pub fn nav() -> Component {
         format!("header"), Content::InnerHtml(
         vec![
           Elements::Custom(format!("a"), Content::InnerText(format!("Home")), Some(vec![
-            (format!("href"), format!(""))
+            (format!("href"), format!("index.html"))
+          ])),
+          Elements::Text(format!(" | ")),
+          Elements::Custom(format!("a"), Content::InnerText(format!("404")), Some(vec![
+            (format!("href"), format!("404.html"))
           ]))
         ]
       ),
