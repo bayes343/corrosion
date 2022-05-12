@@ -1,16 +1,16 @@
 use crate::lib::domain::{ Component };
 
+pub enum Content {
+  InnerText(String),
+  InnerHtml(Vec<Elements>)
+}
+
 pub enum Elements {
   Text(String),
   Custom(String, Content, Option<Vec<(String, String)>>),
   Heading(u8, Content),
   Paragraph(Content),
   Component(Component)
-}
-
-pub enum Content {
-  InnerText(String),
-  InnerHtml(Vec<Elements>)
 }
 
 impl Elements {
