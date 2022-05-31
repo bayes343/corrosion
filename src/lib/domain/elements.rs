@@ -10,6 +10,7 @@ pub enum Elements {
   Custom(String, Content, Option<Vec<(String, String)>>),
   Heading(u8, Content),
   Paragraph(Content),
+  Anchor(String, Content),
   Component(Component)
 }
 
@@ -25,6 +26,10 @@ impl Elements {
       },
       Elements::Paragraph(content) =>
         raw_html("p".to_string(), content, &None),
+      Elements::Anchor(href, content) =>
+        raw_html("a".to_string(), content, &Some(vec![
+          (format!("href"), href.to_string())
+        ])),
       Elements::Component(component) => {
         let els = &component.elements;
         els.into_iter().map(|e| e.render()).collect()

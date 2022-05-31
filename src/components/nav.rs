@@ -6,13 +6,9 @@ pub fn nav() -> Component {
       Elements::Custom(
         format!("header"), Content::InnerHtml(
         vec![
-          Elements::Custom(format!("a"), Content::InnerText(format!("Home")), Some(vec![
-            (format!("href"), format!("index.html"))
-          ])),
+          Elements::Anchor("index.html".to_string(), Content::InnerText("Home".to_string())),
           Elements::Text(format!(" | ")),
-          Elements::Custom(format!("a"), Content::InnerText(format!("404")), Some(vec![
-            (format!("href"), format!("404.html"))
-          ]))
+          Elements::Anchor("404.html".to_string(), Content::InnerText("Not Found".to_string()))
         ]
       ),
       None)
