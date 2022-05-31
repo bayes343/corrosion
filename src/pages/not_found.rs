@@ -1,5 +1,6 @@
-use crate::lib::domain::{ Page, Elements };
+use crate::lib::domain::{ Page, Elements, Style, Attributes };
 use crate::components::{ header };
+use crate::styles::{ shared };
 
 pub fn not_found() -> Page {
   Page {
@@ -10,6 +11,15 @@ pub fn not_found() -> Page {
         String::from("Page Not Found"),
         String::from("Please check your spelling or try back later.")
       ))
+    ],
+    styles: vec![
+      shared(),
+      Style {
+        target: format!("h1"),
+        attributes: vec![
+          Attributes::Custom(format!("color"), format!("red"))
+        ]
+      }
     ]
   }
 }

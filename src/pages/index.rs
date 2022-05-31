@@ -1,5 +1,6 @@
 use crate::lib::domain::{ Page, Elements, Content };
 use crate::components::{ header };
+use crate::styles::{ shared };
 
 pub fn index() -> Page {
   Page {
@@ -22,6 +23,9 @@ pub fn index() -> Page {
         ]),
         None
       )
+    ],
+    styles: vec![
+      shared()
     ]
   }
 }
