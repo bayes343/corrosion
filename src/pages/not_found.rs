@@ -1,6 +1,7 @@
 use crate::lib::domain::{ Page, Elements, Style, Attributes };
 use crate::components::{ header };
 use crate::styles::{ shared };
+use crate::scripts::{ greet };
 
 pub fn not_found() -> Page {
   Page {
@@ -20,6 +21,7 @@ pub fn not_found() -> Page {
           Attributes::Custom(format!("color"), format!("red"))
         ]
       }
-    ]
+    ],
+    script: Some(greet())
   }
 }
