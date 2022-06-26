@@ -7,6 +7,12 @@ Experimental frontend framework using the Rust language.
 ### Pre-requisites
 
 - Cargo
+- wasm-pack - https://rustwasm.github.io/wasm-pack/installer/
+
+### Building
+
+- Build wasm bundle `wasm-pack build --target web`
+- Build static files `cargo run`
 
 ### Enabling Hot Reload
 

@@ -26,6 +26,7 @@ pub fn index() -> Page {
     ],
     styles: vec![
       shared()
-    ]
+    ],
+    script: None
   }
 }
