@@ -1,8 +1,12 @@
-use crate::lib::domain::{ Component };
+use crate::lib::domain::{ Component, Script };
 
 pub enum Content {
   InnerText(String),
   InnerHtml(Vec<Elements>)
+}
+
+pub enum Events {
+  OnClick(Script)
 }
 
 pub enum Elements {
@@ -43,12 +47,9 @@ fn raw_html(tag: String, content: &Content, attributes: &Option<Vec<(String, Str
   if let Some(vec) = attributes {
     attributes_string = get_attribute_string(vec)
   }
+  let inner_html = get_inner_html(content);
 
-  format!("<{t}{a}>{i}</{t}>",
-    t = tag,
-    i = get_inner_html(content),
-    a = attributes_string
-  )
+  format!("<{tag}{attributes_string}>{inner_html}</{tag}>")
 }
 
 fn get_attribute_string(attributes: &Vec<(String, String)>) -> String {
