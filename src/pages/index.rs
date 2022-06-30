@@ -1,5 +1,6 @@
-use crate::lib::domain::{ Page, Elements, Content };
+use crate::lib::domain::{ Page, Elements, Content, Events };
 use crate::components::{ header };
+use crate::scripts::greet;
 use crate::styles::{ shared };
 
 pub fn index() -> Page {
@@ -18,11 +19,12 @@ pub fn index() -> Page {
             Content::InnerHtml(vec![
               Elements::Text(format!("This text is ")),
               Elements::Custom(format!("b"), Content::InnerText(format!("bold")), None),
-              Elements::Text(format!("."))
-            ]))
-        ]),
-        None
-      )
+              Elements::Text(format!(".")),
+              ]))
+              ]),
+              None
+            ),
+      Elements::Button(Content::InnerText(format!("Greet!")), Events::OnClick(greet()))
     ],
     styles: vec![
       shared()

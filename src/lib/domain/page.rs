@@ -15,7 +15,7 @@ impl Page {
     let mut rendered_script: String = format!("");
 
     if let Some(script) = &self.script {
-      rendered_script = script.render();
+      rendered_script = script.render(None);
     }
 
     format!(

@@ -6,7 +6,7 @@ mod style;
 mod script;
 
 pub use page::Page;
-pub use elements::{ Elements, Content };
+pub use elements::{ Elements, Content, Events };
 pub use component::Component;
 pub use layout::Layout;
 pub use style::{ Attributes, Style };
