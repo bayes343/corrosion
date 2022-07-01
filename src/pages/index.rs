@@ -20,10 +20,11 @@ pub fn index() -> Page {
               Elements::Text(format!("This text is ")),
               Elements::Custom(format!("b"), Content::InnerText(format!("bold")), None),
               Elements::Text(format!(".")),
-              ]))
-              ]),
-              None
-            ),
+            ])
+          )
+        ]),
+        None
+      ),
       Elements::Button(Content::InnerText(format!("Greet!")), Events::OnClick(greet()))
     ],
     styles: vec![
